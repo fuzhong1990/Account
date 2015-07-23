@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.fuhero.account.dao.UserDAO">
+
+    <!-- #和$的区别：#{parameterName}引用参数的时候，Mybatis会把这个参数认为是一个字符串，尽量使用#来传参！ -->
+    <insert id="create" parameterType="cn.fuhero.account.entity.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (username,password,nickName,brith,sex,address,addTime)
+        VALUES (#{username},#{password},#{nickName},#{brith},#{sex},#{address},NOW())
+    </insert>
+
+    <select id="getById" parameterType="String" resultType="cn.fuhero.account.entity.out.UserOutput">
+        select * from user where id = #{id}
+    </select>
+
+</mapper>
